@@ -1,15 +1,18 @@
 package com.cos.blog.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
@@ -41,7 +44,7 @@ public class Board {
 	
 	//private int userId; // ORM에서는 이 방식을 사용하지 않는다.
 	
-	@ManyToOne // 연관관계를 맺어줘야 한다. Many=Board, User=One
+	@ManyToOne(fetch = FetchType.EAGER) // 연관관계를 맺어줘야 한다. Many=Board, User=One
 	@JoinColumn(name="userId")
 	// 실제로 데이터베이스에 만들어질 때는 userId라는 이름으로 만들어진다.
 	// 즉 테이블에 userId라는 필드값이 들어가게 된다.
@@ -52,6 +55,13 @@ public class Board {
 	// 그런데 이렇게 만들면 테이블이 어떻게 인식할까?
 	// User 객체니 User.java 참조하고 Board.java에서 FK로 만들어 테이블에 저장한다.
 	// 데이터베이스에 오브젝트를 저장할 수 없기 때문이다.
+	
+	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+	// 하나의 게시물에 여러 덧글이 달린다.
+	// mappedBy : 연관관계의 주인이 아니다.(나는 FK가 아니다) DB에 칼럼 만들지 마십셔!
+	// 나는 그냥 Board를 select할 때 join을 통해 값을 얻기 위해 필요한 것이다.
+	private List<Reply> reply;
+	// 즉, 얘는 테이블에 생성되는 FK가 아니다.
 	
 	@CreationTimestamp
 	private Timestamp createDate;

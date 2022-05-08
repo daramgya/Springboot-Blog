@@ -3,18 +3,20 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Data
 @NoArgsConstructor
@@ -36,11 +38,11 @@ public class User {
 	
 	@Column(nullable = false, length = 50)
 	private String email;
-	
-	@ColumnDefault("'user'")
-	private String role;
-	// admin, user, manager ...
-	// 정확히는 Enum을 사용하는 것이 좋다. Enum을 사용하면 어떤 데이터의 도메인(범위)을 만들 수 있다.
+
+	@Enumerated(EnumType.STRING) // DB에 해당 Enum이 String이라는 것 알려줌
+	private RoleType role;
+	// USER, ADMIN
+	// Enum을 사용하는 것이 좋다. Enum을 사용하면 어떤 데이터의 도메인(범위)을 만들 수 있다.
 	// role이 String이므로 adminn과 같은 오타를 낼 수가 있다. Enum을 사용하면 이를 방지할 수 있다.
 	
 	@CreationTimestamp // 데이터가 insert나 update 될 때 시간이 자동으로 입력된다.

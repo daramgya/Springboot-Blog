@@ -30,7 +30,7 @@ public class Reply {
 	@Column(nullable = false, length = 200)
 	private String content;
 	
-	@ManyToOne //하나의 게시글에 여러 개의 덧글, OneToOne은 1:1 
+	@ManyToOne // 여러 개의 덧글이 하나의 게시글에 달린다. OneToOne은 1:1 
 	@JoinColumn(name="boardId")
 	private Board board; // 알아서 Board 테이블이랑 연결된다.
 	
