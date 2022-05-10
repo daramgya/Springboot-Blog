@@ -30,7 +30,7 @@ public class User {
 	// 프로젝트에서 연결된 DB의 넘버링 전략을 따라간다. 즉, MySQL일 경우 auto_increment를 사용한다는 것이다.
 	private int id; // 시퀀스(오라클), auto_increment로 넘버링(MySQL)
 	
-	@Column(nullable = false, length = 30) // null이 될 수 없고, 30자 이상이 될 수 없다.
+	@Column(unique = true, nullable = false, length = 30) // 중복불가능, null이 될 수 없고, 30자 이상이 될 수 없다.
 	private String username; // 아이디
 	
 	@Column(nullable = false, length = 100) // 비밀번호 암호화한 해쉬 넣어볼 예정이므로 길게 설정

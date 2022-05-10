@@ -22,8 +22,8 @@ public class UserApiController {
 	// json 데이터를 받으려면 @RequestBody라는 어노테이션이 필요하다.
 		System.out.println("UserApiController : save 호출됨");
 		user.setRole(RoleType.USER);
-		int result = userService.회원가입(user); // 1이면 회원가입 성공, -1이면 실패
-		return new ResponseDto<Integer>(HttpStatus.OK, 1); // (status, data)
+		userService.회원가입(user); // 1이면 회원가입 성공, -1이면 실패
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); // (status, data)
 		// 자바 오브젝트를 JSON으로 변환해서 리턴 (Jackson)
 	}
 }
