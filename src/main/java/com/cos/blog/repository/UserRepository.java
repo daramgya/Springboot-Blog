@@ -1,6 +1,7 @@
 package com.cos.blog.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.cos.blog.model.User;
 
@@ -10,4 +11,12 @@ import com.cos.blog.model.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
 // 해당 JpaRepository는 User테이블을 관리하는 Repository이다.
 // 그리고 User테이블의 Primary key는 Integer이다.
+	
+	//JPA 네이밍 쿼리
+	// SELECT * FROM user WHERE username = ?1 AND password = ?2;
+	
+	//User findByUsernameAndPassword(String username, String password);
+	
+	// @Query(value="SELECT * FROM user WHERE username = ?1 AND password = ?2", nativeQuery = true)
+	// User login(String username, String password);
 }

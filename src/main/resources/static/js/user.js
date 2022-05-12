@@ -20,19 +20,20 @@ let index = {
 			// ajax 통신을 이용해 3개의 데이터를 json으로 변경하여 insert 요청
 			$.ajax({
 				type: "post",
-				url: "/blog/api/user", // 요청할 url
+				url: "/auth/joinProc", // 요청할 url
 				data: JSON.stringify(data), // http body데이터, JSON.stringify( )는 자바스크립트의 값을 JSON 문자열로 변환한다.
 				// 서버로 전송할 데이터이다. 즉, 서버에 요청할 때 보낼 매개변수 설정하는 것이다.
 				contentType: "application/json; charset=utf-8", // body데이터가 어떤 타입인지(MIME)
 				dataType: "json" // 서버에서 전송받을 데이터형식을 말한다. 즉, 응답 받을 데이터 타입(XML,HTML,JSON..)을 설정한다.
 			}).done(function(resp){ // 위 응답의 결과가 함수의 파라미터로 전달된다. 
 				alert("회원가입이 완료되었습니다.");
-				// location.href = "/blog";
+				location.href = "/";
 				console.log(resp);
 			}).fail(function(error){
 				alert(JSON.stringify(error));
 			});
 		}
+
 }
 // 위까지는 그냥 오브젝트이기 때문에 아무일도 일어나지 않는다.
 // 따라서 호출해주어야 작동한다.
