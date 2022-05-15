@@ -3,7 +3,6 @@
 <%@ include file="../layout/header.jsp"%>
 <!--  ../ : 한 칸 위로 올라가서 -->
 
-
 <div class="container">
 	<form action="/auth/loginProc" method="post">
 		<div class="form-group">

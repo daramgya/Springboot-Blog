@@ -39,7 +39,7 @@ public class Board {
 	@Lob // 대용량 데이터
 	private String content; // 섬머노트 라이브러리 <html> 태그가 섞여서 디자인이 된다.
 	
-	@ColumnDefault("0") // int 니까 ' ' 없이 숫자만 입력한다.
+	// @ColumnDefault("0")
 	private int count; // 조회수
 	
 	//private int userId; // ORM에서는 이 방식을 사용하지 않는다.
@@ -62,6 +62,7 @@ public class Board {
 	// 나는 그냥 Board를 select할 때 join을 통해 값을 얻기 위해 필요한 것이다.
 	private List<Reply> reply;
 	// 즉, 얘는 테이블에 생성되는 FK가 아니다.
+	// 나중에 select 하기 위해서 있는 코드
 	
 	@CreationTimestamp
 	private Timestamp createDate;
