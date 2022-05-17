@@ -10,15 +10,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UserController {
 	
-	// http://localhost:9090/user/joinForm
 	@GetMapping("/auth/joinForm") //회원가입하는데 인증필요없으므로 /auth
 	public String joinForm() {
 		return "user/joinForm";
 	}
 	
-	// http://localhost:9090/blog/user/loginForm
 	@GetMapping("/auth/loginForm")
 	public String loginForm() {
 		return "user/loginForm";
 	}
+	
+	@GetMapping("/user/updateForm")
+	public String updateForm() {
+		return "user/updateForm";
+	}
+	
+	
+	
+	
+	
+	
 }

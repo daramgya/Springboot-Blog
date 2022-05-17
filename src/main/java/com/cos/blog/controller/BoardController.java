@@ -30,9 +30,15 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board/{id}") // @Controller에서 이와 같은 파라미터 받는 방법 : @PathVariable
-	public String findById(@PathVariable int id, Model model) {
+	public String findById(@PathVariable int id, Model model) { // 모델 : 해당 데이터를 가지고 view까지 이동
 		model.addAttribute("board", boardService.글상세보기(id));
 		return "board/detail";
+	}
+	
+	@GetMapping("/board/{id}/updateForm")
+	public String updateForm(@PathVariable int id, Model model) {
+		model.addAttribute("board", boardService.글상세보기(id));
+		return "board/updateForm";
 	}
 	
 	@GetMapping("/board/saveForm")
