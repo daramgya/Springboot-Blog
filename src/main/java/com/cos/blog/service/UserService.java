@@ -1,6 +1,10 @@
 package com.cos.blog.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +23,7 @@ public class UserService {
 	
 	@Autowired // encode가 DI가 되어서 주입이 된다.
 	private BCryptPasswordEncoder encoder;
-
+	
 	@Transactional // 오류 발생 시 롤백한다.
 	public void 회원가입(User user) {
 		String rawPassword = user.getPassword(); // 1234 원문
@@ -43,7 +47,12 @@ public class UserService {
 		persistance.setEmail(user.getEmail());
 		// 회원수정 함수 종료시 == 서비스 종료 == 트랜잭션 종료 == commit이 자동으로 된다.
 		// 영속화된 persistance 객체의 변화가 감지되면 더티체킹이 되어 DB에 update문을 날려준다.
+
 	}
+	
+	
+	
+	
 	
 	/*
 	 * @Transactional(readOnly = true) // Select할 때 트랜잭션 시작, 서비스 종료 시 트랜잭션 종료 (정합성)
